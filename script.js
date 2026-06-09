@@ -16,6 +16,13 @@ saveBtn.addEventListener("click", () => {
 
     memos.push(memo);
 
+    localStorage.setItem(
+        "memos",
+        JSON.stringify(memos)
+    );
+
+    displayMemos();
+
     console.log("タイトル:", title);
     console.log("内容:", content);
 });
@@ -38,13 +45,6 @@ function displayMemos(){
         `;
     });
 }
-
-displayMemos();
-
-localStorage.setItem(
-    "memos",
-    JSON.stringify(memos)
-);
 
 memos = JSON.parse(
     localStorage.getItem("memos")
