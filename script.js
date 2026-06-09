@@ -44,7 +44,7 @@ localStorage.setItem(
     JSON.stringify(memos)
 );
 
-let memos = JSON.parse(
+memos = JSON.parse(
     localStorage.getItem("memos")
 ) || [];
 
