@@ -39,6 +39,8 @@ function displayMemos(){
     });
 }
 
+displayMemos();
+
 localStorage.setItem(
     "memos",
     JSON.stringify(memos)
@@ -59,5 +61,3 @@ function deleteMemo(index) {
 
     displayMemos();
 }
-
-displayMemos();
