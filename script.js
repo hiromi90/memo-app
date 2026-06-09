@@ -61,3 +61,6 @@ function deleteMemo(index) {
 
     displayMemos();
 }
+
+
+displayMemos();
