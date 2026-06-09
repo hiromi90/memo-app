@@ -1,1 +1,24 @@
+body{
+    width: 600px;
+    margin: 30px auto;
+    font-family: sans-serif;
+}
 
+input,
+textarea{
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box; /* ★ここが重要！ */
+    margin-bottom: 10px;    /* 入力欄同士の間に少し隙間を作る */
+}
+
+textarea{
+    height: 100px;
+    resize: vertical;       /* ★おすすめ：ユーザーが縦方向にだけサイズ変更できるようにする */
+}
+
+.memo{
+    border:1px solid gray;
+    padding: 10px;
+    margin-top: 10px;
+}
