@@ -2,6 +2,7 @@ console.log("接続成功");
 
 const saveBtn = document.getElementById("saveBtn");
 let memos = [];
+let editingIndex = -1;
 
 saveBtn.addEventListener("click", () => {
 
@@ -14,12 +15,27 @@ saveBtn.addEventListener("click", () => {
         content: content
     };
 
-    memos.push(memo);
+    if(editingIndex == -1){
+
+        memos.push(memo);
+
+    }
+
+    else{
+
+        memos[editingIndex] = memo;
+
+        editingIndex = -1;
+    }
 
     localStorage.setItem(
         "memos",
         JSON.stringify(memos)
     );
+
+    document.getElementById("title").value = "";
+    
+    document.getElementById("content").value = "";
 
     displayMemos();
 
@@ -40,6 +56,7 @@ function displayMemos(){
             <h3>${memo.title}</h3>
             <p>${memo.content}</p>
 
+            <button onclick="editMemo(${index})">編集</button>
             <button onclick="deleteMemo(${index})">削除</button>
         </div>
         `;
@@ -60,6 +77,15 @@ function deleteMemo(index) {
     );
 
     displayMemos();
+}
+
+function editMemo(index){
+
+    editingIndex = index;
+    
+    document.getElementById("title").value = memos[index].title;
+
+    document.getElementById("content").value = memos[index].content;
 }
 
 
