@@ -9,7 +9,7 @@ textarea{
     width: 100%;
     padding: 10px;
     box-sizing: border-box; /* ★ここが重要！ */
-    margin-bottom: 10px;    /* 入力欄同士の間に少し隙間を作る */
+    margin: 10px 0;    /* 入力欄同士の間に少し隙間を作る */
 }
 
 textarea{
