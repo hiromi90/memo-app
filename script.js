@@ -3,6 +3,8 @@ console.log("接続成功");
 const saveBtn = document.getElementById("saveBtn");
 let memos = [];
 let editingIndex = -1;
+const searchInput = document.getElementById("search");
+const tag = document.getElementById("tag").value;
 
 saveBtn.addEventListener("click", () => {
 
@@ -12,6 +14,7 @@ saveBtn.addEventListener("click", () => {
     
     const memo = {
         title: title,
+        tag: tag,
         content: content
     };
 
@@ -43,16 +46,24 @@ saveBtn.addEventListener("click", () => {
     console.log("内容:", content);
 });
 
-function displayMemos(){
+function displayMemos(searchText =""){
 
     const memoList = document.getElementById("memoList");
 
     memoList.innerHTML = "";
 
-    memos.forEach((memo, index) => {
+    const filteredMemos = memos.filter((memo) => { //フィルタリングして、タイトルまたは内容に検索テキストが含まれているメモだけを表示
+
+        return( //タイトルまたは内容に検索テキストが含まれているかをチェック
+            memo.title.includes(searchText) || memo.content.includes(searchText) //検索テキストがタイトルまたは内容に含まれている場合はtrueを返す
+        );
+    });
+
+    filteredMemos.forEach((memo, index) => { //フィルタリングされたメモを表示
 
         memoList.innerHTML += `
         <div class="memo">
+            <p>#${memo.tag}</p>
             <h3>${memo.title}</h3>
             <p>${memo.content}</p>
 
@@ -88,5 +99,10 @@ function editMemo(index){
     document.getElementById("content").value = memos[index].content;
 }
 
-
 displayMemos();
+
+searchInput.addEventListener("input", () => {
+
+    displayMemos(searchInput.value);
+
+});
